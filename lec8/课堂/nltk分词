@@ -1,0 +1,49 @@
+import pymysql
+import re
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+con=pymysql.connect(
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='123',
+    db='nce',
+    charset='utf8',
+    )
+def insert(con,frequent,l):
+    cue = con.cursor()
+    # print("mysql conneted")
+    try:
+        print(str(frequent))
+        print(l)
+        cue.execute(
+            "update article set frequent=(%s) where a_id=(%s)",[str(frequent),l])
+        print("insert success")
+
+    except Exception as e:
+        print('Insert error:', e)
+        con.rollback()
+    else:
+        con.commit()
+    cue.close()
+
+def read():
+    cue = con.cursor()
+    query = """select text 
+    from article
+    """
+    stop_words = set(stopwords.words('english'))
+    cue.execute(query)
+    result = cue.fetchall()
+    df_resulet = pd.DataFrame(list(result))
+    for l in df_resulet.index:
+        text = str(df_resulet.loc[l].values)
+        word_tokens = word_tokenize(text[1:-1])
+        
+        filtered_sentence = [w for w in word_tokens if not w in stop_words]
+        # print(filtered_sentence[1:-1])
+        insert(con,filtered_sentence[1:-1],l+1)
+read ()
+con.close()
