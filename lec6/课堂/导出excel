@@ -1,0 +1,110 @@
+/**
+
+* @param array $data 要导出的数据
+
+* @param array $title excel表格的表头
+
+* @param string $filename 文件名
+
+*/
+
+public function daochu_excel($data=array(),$title=array(),$filename='报表'){//导出excel表格
+
+//处理中文文件名
+
+ob_end_clean();
+
+Header('content-Type:application/vnd.ms-excel;charset=utf-8');
+
+
+
+header("Content-Disposition:attachment;filename=export_data.xls");
+
+//处理中文文件名
+
+$ua = $_SERVER["HTTP_USER_AGENT"];
+
+
+
+$encoded_filename = urlencode($filename);
+
+$encoded_filename = str_replace("+", "%20", $encoded_filename);
+
+if (preg_match("/MSIE/", $ua) || preg_match("/LCTE/", $ua) || $ua == 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko') {
+
+header('Content-Disposition: attachment; filename="' . $encoded_filename . '.xls"');
+
+}else {
+
+header('Content-Disposition: attachment; filename="' . $filename . '.xls"');
+
+}
+
+header ( "Content-type:application/vnd.ms-excel" );
+
+
+
+
+
+$html = "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+";
+
+foreach($title as $k=>$v){
+
+$html .= " ";
+
+}
+
+
+
+$html .= "";
+
+
+
+foreach ($data as $key => $value) {
+
+$html .= "";
+
+foreach($value as $aa){
+
+$html .= "";
+
+}
+
+
+
+$html .= "";
+
+
+
+}
+
+$html .= "
+".$v."
+".$aa."
+";
+
+echo $html;
+
+exit;
+
+}

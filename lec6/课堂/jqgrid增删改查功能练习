@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JCompare</title>
+<link rel="stylesheet" type="text/css" href="jqgrid/css/ui.jqgrid.css">
+<link rel="stylesheet" type="text/css"<span style="white-space:pre">	</span>href="jqgrid/jquery.ui/jquery-ui.css">
+<script type="text/javascript" src="jqgrid/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jqgrid/js/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="jqgrid/jquery.ui/jquery-ui.js"></script>
+</head>
+<body>
+<span style="white-space:pre">	</span><table id="list"></table>
+<span style="white-space:pre">	</span><div id="pager"></div>
+</body>
+ 
+ 
+<script type="text/javascript">
+$("#list").jqGrid({        
+   <span style="white-space:pre">	</span>url:'server.php?q=2',//请求数据的地址
+<span style="white-space:pre">	</span>datatype: "json",
+   <span style="white-space:pre">	</span>colNames:['Id','姓名', '年龄'],
+<span style="white-space:pre">	</span>//jqgrid主要通过下面的索引信息与后台传过来的值对应
+   <span style="white-space:pre">	</span>colModel:[
+   <span style="white-space:pre">		</span>{name:'id',index:'id', width:200},
+   <span style="white-space:pre">		</span>{name:'name',index:'invdate', width:200},
+   <span style="white-space:pre">		</span>{name:'age',index:'name', width:300}
+      <span style="white-space:pre">	</span>],
+   <span style="white-space:pre">	</span>caption:"我是jqgrid的标题",
+    rowNum : 10,
+    rowList : [ 10, 20, 30 ],
+    pager : '#pager',
+    sortname : 'id',
+    recordpos : 'right',
+    height:300,
+    viewrecords : true
+});
+$("#list").jqGrid('navGrid', '#pager', {
+    add : true,
+    del : true,
+    edit : true,
+    position : 'left',
+   });
+</script>
+</html>

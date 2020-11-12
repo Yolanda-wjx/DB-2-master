@@ -1,0 +1,45 @@
+<script type="text/javascript">
+ 
+var openDialog4Adding = function() {  
+	alert("add Demo");
+	
+};  
+var openDialog4Updating = function(rowid) { // (6) 接受选中行的id为参数  
+	alert("update Demo");
+};  
+var openDialog4Deleting = function(rowid) { // (8) 接受选中行的id为参数  
+	alert("delete Demo");
+};  
+ 
+ 
+$("#list").jqGrid({        
+   	url:'server.php?q=2',//请求数据的地址
+	datatype: "json",
+   	colNames:['Id','姓名', '年龄'],
+	//jqgrid主要通过下面的索引信息与后台传过来的值对应
+   	colModel:[
+   		{name:'id',index:'id', width:200},
+   		{name:'name',index:'invdate', width:200},
+   		{name:'age',index:'name', width:300}
+      	],
+   	caption:"我是jqgrid的标题",
+    rowNum : 10,
+    rowList : [ 10, 20, 30 ],
+    pager : '#pager',
+    sortname : 'id',
+    recordpos : 'right',
+    height:300,
+    viewrecords : true
+});
+$("#list").jqGrid('navGrid', '#pager', {
+    add : true,
+    del : true,
+    edit : true,
+    position : 'left',
+    addfunc : openDialog4Adding,    // (1) 点击添加按钮，则调用openDialog4Adding方法  
+    editfunc : openDialog4Updating, // (2) 点击编辑按钮，则调用openDialog4Updating方法  
+    delfunc : openDialog4Deleting,  // (3) 点击删除按钮，则调用openDialog4Deleting方法  
+    alerttext : "请选择需要操作的数据行!"  // (4) 当未选中任何行而点击编辑、删除、查看按钮时，弹出的提示信息  
+  });
+  
+</script>
