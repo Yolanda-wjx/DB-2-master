@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
+    <script>
+    //<![CDATA[
+    $(function () {
+        "use strict";
+        $("#grid").jqGrid({
+            colModel: [
+				{ name: "ID",width:75},
+                { name: "Source Text", width:500},
+                { name: "Target Text", width:500}
+            ],
+            data: [
+                { id: 1, ID:"1",
+						 Source Text: "When news broke on August 6th of an order from President Donald Trump that could result in the shutdown of WeChat in America, panic broke out among users of the super-app that is the digital bedrock of Chinese society. ", 
+				         Target Text: "8月6日，有新闻报道称美国总统唐纳德·特朗普（Donald Trump）会下令在美国禁用微信，美国的微信用户突然感到恐慌，而这个手机软件是中国社会在线沟通的基石。”。" },
+                { id: 2, ID:"2",
+					     Source Text: "They shared and reposted step-by-step guides about how to download records of their WeChat conversations and of pictures and videos they had shared through the platform lest they suddenly become inaccessible. ", 
+				         Target Text: "人们分享并转载了有关如何下载微信聊天记录和以前分享过的照片视频的详细指南，以免他们突然无法访问。" },
+                { id: 3, ID:"3",
+					     Source Text: "Mr Trump’s vaguely worded ban on “transactions” with WeChat, citing national-security concerns, will affect fewer people in America than his similar move against TikTok, a hugely popular video-sharing app. ", 
+				         Target Text: "特朗普以国家安全为由，语言模糊地禁止与微信"交易"，这次的禁封对美国民众的影响小于之前对TikTok采取的类似举措（TikTok是极其受欢迎的视频分享软件）。" },
+                { id: 4, ID:"4",
+					     Source Text: "But for WeChat’s millions of users in America—mainly ethnic Chinese who depend on it to communicate with family and friends in China—the consequences of Mr Trump’s efforts to contain the WeChat “threat” could be devastating. It would also be a blow to many business people who use it for dealings with counterparts in China.  ", 
+				         Target Text: "但对于微信在美国的数百万用户——主要是一些使用微信与中国的家人朋友沟通的华裔用户——特朗普遏制微信“威胁”的后果可能会很严重。对于许多用微信与中国合作伙伴打交道的商人来说，这也将是一个打击。" }
+
+            ]
+        });
+    });
+    //]]>
+    </script>
+</head>
+<body>
+<table id="grid"></table>
+</body>
+</html>
